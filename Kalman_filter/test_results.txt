@@ -1,0 +1,6 @@
+Based on the simulations the most accurate Kalman filtering method is as follows:
+
+- Filtering as often as possible (1:1 if possible)
+- Using bias estimation ( A = [1 T; 0 1])
+- Using A*P*A' everywhere (as opposed to : http://tom.pycke.be/mav/71/kalman-filtering-of-imu-data)
+	- since the difference between the two estimations is ~0.1%, it still might be better to use the equations in the 		link, as there are two less matrix multiplications, and that could save time.

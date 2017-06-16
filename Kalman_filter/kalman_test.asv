@@ -114,7 +114,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     % Prediction
     for j = 1:gyro_acc_sampling_ratio
         x = A*x + B*w_n((i-1)*gyro_acc_sampling_ratio+j);
-        P = A*P*A'+Q;
+        p = A*P*A'+Q;
         theta_est_kalman_bias1((i-1)*gyro_acc_sampling_ratio+j+1) = x(1);
     end
     
@@ -207,7 +207,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     S = P+R;
     G = P/S;
     theta_curr = theta_curr + G*v;
-    P = (eye(size(G,1))-G)*P;
+    P = (eye(size(G*g,1))-G*g)*P;
     
 end
 
@@ -231,7 +231,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     S = P+R;
     G = P/S;
     theta_curr = theta_curr + G*v;
-    P = (eye(size(G,1))-G)*P+Q;
+    P = (eye(size(G*g,1))-G*g)*P+Q;
     
 end
 
@@ -249,7 +249,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     % Prediction
     for j = 1:gyro_acc_sampling_ratio
         x = A*x + B*w_n((i-1)*gyro_acc_sampling_ratio+j);
-        P = A*P*A'+Q;
+        p = A*P*A'+Q;
         theta_est_kalman_bias1((i-1)*gyro_acc_sampling_ratio+j+1) = x(1);
     end
     
@@ -258,7 +258,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     S = C*P*C'+R;
     G = A*P*C'/S;
     x = x + G*v;
-    P = (eye(size(G*C,1))-G*C)*P;
+    P = (eye(size(G*g,1))-G*g)*P;
     
 end
 
@@ -342,7 +342,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     S = P+R;
     G = P/S;
     theta_curr = theta_curr + G*v;
-    P = (eye(size(G,1))-G)*P;
+    P = (eye(size(G*g,1))-G*g)*P;
     
 end
 
@@ -366,7 +366,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     S = P+R;
     G = P/S;
     theta_curr = theta_curr + G*v;
-    P = (eye(size(G,1))-G)*P+Q;
+    P = (eye(size(G*g,1))-G*g)*P+Q;
     
 end
 
@@ -384,7 +384,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     % Prediction
     for j = 1:gyro_acc_sampling_ratio
         x = A*x + B*w_n((i-1)*gyro_acc_sampling_ratio+j);
-        P = A*P*A'+Q;
+        p = A*P*A'+Q;
         theta_est_kalman_bias1((i-1)*gyro_acc_sampling_ratio+j+1) = x(1);
     end
     
@@ -393,7 +393,7 @@ for i = 1:(length(ax_n)/gyro_acc_sampling_ratio)
     S = C*P*C'+R;
     G = A*P*C'/S;
     x = x + G*v;
-    P = (eye(size(G*C,1))-G*C)*P;
+    P = (eye(size(G*g,1))-G*g)*P;
     
 end
 
